@@ -1,13 +1,10 @@
-import { NextRequest, NextResponse } from 'next/server';
+// import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from "next/server";
 
-export function middleware (req = NextRequest) {
-   let token = req.cookies.jwtToken || req.headers.jwtToken
-   if (!token) {
+export async function middleware () {   
 
-     return NextResponse.rewrite(new URL('/api/auth/unauthorized', req.url));
-   }
-   
-    return NextResponse.next();
+  // to do: create response encryption to encrypt response to image src from gdrive
+    return NextResponse.next()
 }
 
 export const config = { matcher: ["/api/:path*"] }
