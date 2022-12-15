@@ -20,9 +20,8 @@ function googleAuthClient() {
 // get file list from google cloud storage
 async function listFiles(client) {
     try {
-
-        // create storage client
         const response = [];
+        // create storage client
         const storage = new Storage({authClient: client});
 
         // get file list from bucket

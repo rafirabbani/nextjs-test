@@ -1,9 +1,8 @@
-// import { NextRequest, NextResponse } from 'next/server';
 import { NextResponse } from "next/server";
 
 export async function middleware () {   
 
-  // to do: create response encryption to encrypt response to image src from gdrive
+  // to do utilize middleware for something
     return NextResponse.next()
 }
 

@@ -1,5 +1,5 @@
 
-export default function Layout({children, size}) {
+export default function Layout({children}) {
     return (
         <div>
             <main>{children}</main>
