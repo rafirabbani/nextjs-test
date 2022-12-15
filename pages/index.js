@@ -8,27 +8,23 @@ export default function Home({images, size}) {
   return (
     <Layout size={size}>
       {/* Carousel */}
-      <div className={styles.carouselContainer}>
         <Carousel images={images.files && images.files.slice(0,6)}/>
-      </div>
       {/* Profile */} 
-      <div className={styles.container}>
-            <div className={styles.profile}>
-                <div className={styles.left}>Left</div>
-                <div className={styles.right}>Right</div>
-            </div>
+      <div className={styles.profileContainer}>
+        <div>
+            MIDDLE
+        </div>
       </div>
       {/* Gallery */}
-      <div className={styles.gallery}>
         {images.files && images.files.map((data, index) => {
           return (
-            <Image key={index} src={`https://storage.googleapis.com/${data.bucketName}/${data.fileName}`} alt={data.fileName} 
-              width={100} height={150}
-              className={styles.image}
-            />
+            <div key={index} className={styles.imageContainer}>
+              <Image src={`https://storage.googleapis.com/${data.bucketName}/${data.fileName}`} alt={data.fileName} 
+                  className={styles.image} fill
+              />
+            </div>  
           );  
         })}
-      </div>
     </Layout>
   );
 }

@@ -2,16 +2,28 @@
   padding: 0 1rem;
 }
 
-.gallery {
-  padding: 0 1rem;
+.profileContainer {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
 }
 
-.gallery .image {
-  margin: 0 1rem
+.gallery {
+  padding: 0 1rem;
+}
+
+.imageContainer {
+  padding: 1rem;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  background-color: grey;
+  margin-top: 0.5rem;
+}
+
+.imageContainer .image {
+  padding: 1rem;
+  object-fit: contain;
 }
 
 .container .profile {
@@ -29,24 +41,4 @@
 
 .container .profile .left {
   margin-left: 10rem;
-}
-
-@media (max-width: 600px) {
-  .grid {
-    width: 100%;
-    flex-direction: column;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .card,
-  .footer {
-    border-color: #222;
-  }
-  .code {
-    background: #111;
-  }
-  .logo img {
-    filter: invert(1);
-  }
 }
