@@ -1,5 +1,32 @@
 .container {
-  padding: 0 2rem;
+  /* padding: 1rem; */
+}
+
+.gallery {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.image {
+  margin: 1rem
+}
+.container .profile {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 40px;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container .profile .right {
+  margin-right: 10rem
+}
+
+.container .profile .left {
+  margin-left: 10rem;
 }
 
 .main {
