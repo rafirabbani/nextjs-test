@@ -1,28 +1,17 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import '../styles/globals.css';
-import { useState, useEffect } from 'react';
+import "bootstrap/dist/css/bootstrap.css";
+import "../styles/globals.css";
 
-function MyApp({ Component, pageProps}) {
-  const size = useWindowSize();
-  pageProps.size = size;
+import Head from "next/head";
+
+function MyApp({ Component, pageProps }) {
   return (
-    <Component {...pageProps} />
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      </Head>
+      <Component {...pageProps} />
+    </>
   );
 }
 
-function useWindowSize() {
-  const [windowSize, setWindowSize] = useState({width: undefined, height: undefined});
-  useEffect(() => {
-    function handleResize() {
-      setWindowSize({width: window.innerWidth, height: window.innerHeight});
-    }
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-  return windowSize
-}
-
-
-export default MyApp
+export default MyApp;

@@ -1,41 +1,71 @@
-import Image from 'next/image'
-import Layout from '../components/Layout/Layout'
-import styles from '../styles/Home.module.css'
-import Carousel from '../components/Carousel/Carousel'
+import Image from "next/image";
+// import Layout from "../components/Layout/Layout";
+import styles from "../styles/Home.module.css";
+import Carousel from "../components/Carousel/Carousel";
+import dynamic from "next/dynamic";
+const NoSSR = dynamic(() => import("../components/Layout/Layout"), {
+  ssr: false,
+});
 
-export default function Home({images, size}) {
-  // to do design landing page
+export default function Home({ images }) {
   return (
-    <Layout size={size}>
-      {/* Carousel */}
-        <Carousel images={images.files && images.files.slice(0,6)}/>
-      {/* Profile */} 
-      <div className={styles.profileContainer}>
-        <div>
-            MIDDLE
+    <>
+      <NoSSR>
+        {/* Carousel */}
+        <Carousel images={images && images.slice(0, 6)} />
+        {/* Profile */}
+        <div className={styles.profileContainer}>
+          <div>MIDDLE</div>
         </div>
-      </div>
-      {/* Gallery */}
-        {images.files && images.files.map((data, index) => {
-          return (
-            <div key={index} className={styles.imageContainer}>
-              <Image src={`https://storage.googleapis.com/${data.bucketName}/${data.fileName}`} alt={data.fileName} 
-                  className={styles.image} fill
-              />
-            </div>  
-          );  
-        })}
-    </Layout>
+        {/* Gallery */}
+        {images &&
+          images.map((data, index) => {
+            return (
+              <div key={index} className={styles.imageContainer}>
+                <Image
+                  src={`${data.filePath}`}
+                  alt={data.fileName}
+                  className={styles.image}
+                  fill
+                />
+              </div>
+            );
+          })}
+      </NoSSR>
+    </>
   );
 }
-export async function getServerSideProps() {
-  const res = await fetch('http://localhost:9000/api/image/imagesList');
-  const images = await res.json();
-  return {
-    props: {
-      images
-    }
-  }
+
+// //* ACCESS SERVER RESOURCE*//
+
+import fs from "fs";
+import path from "path";
+
+async function listFiles() {
+  const filePath = path.join(process.cwd(), "/public/carousel");
+  return new Promise((resolve, reject) => {
+    return fs.readdir(filePath, (err, files) => {
+      if (err) {
+        console.log("err read file", err);
+        return reject(err);
+      }
+      return resolve(
+        files.map((f) => {
+          return {
+            fileName: f,
+            filePath: `/carousel/${f}`,
+          };
+        })
+      );
+    });
+  });
 }
 
-
+export async function getServerSideProps() {
+  const res = await listFiles();
+  return {
+    props: {
+      images: res,
+    },
+  };
+}

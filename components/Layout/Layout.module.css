@@ -1,3 +1,29 @@
 .layout {
     background-color: black;
 }
+
+.headerContainer {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+
+.headerContainer .leftHeader {
+    padding-left: 5rem;
+    display: flex;
+    align-content: center;
+    column-gap: 2rem;
+}
+
+.dropdown-toggle::after {
+    display: none;
+}
+
+/* #dropdown-basic .dropdown-toggle::after {
+    display: none !important;
+} */
+
+.headerContainer .rightHeader {
+    padding-right: 5rem;
+    color: red;
+}
