@@ -1,11 +1,19 @@
-.btn {
-    background-color: red;
-    margin: 5px;
+.darknessMyOldFriend {
+    &.MuiFormControl-root {
+        .MuiFormLabel-root {
+            color: "red";
+
+            &.Mui-focused {
+                color: "red";
+            }
+        }
+
+        .MuiSvgIcon-root {
+            color: "red";
+        }
+
+        .MuiInputBase-root {
+            color: "red";
+        }
+    }
 }
-
-.btn.show {
-    background-color: white;
-}
-
-
-

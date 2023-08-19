@@ -13,11 +13,13 @@
     display: flex;
     align-content: center;
     column-gap: 2rem;
+    margin: 10px;
 }
 
 .headerContainer .rightHeader {
     padding-right: 5rem;
-    color: red;
+    column-gap: 2rem;
+    margin: 10px;
 }
 
 .dropDown {

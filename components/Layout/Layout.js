@@ -46,7 +46,9 @@ function WebPage({ children }) {
             <a>Gallery</a>
             <a>Contacts</a>
           </div>
-          <div className={styles.rightHeader}>Right</div>
+          <div className={styles.rightHeader}>
+          <Dropdown background={{type: "string", name: "Language",}} itemList={[{name: "ENG"}, {name: "JPN"}, {name: "IDN"}]} /* disableArrow *//>
+          </div>
         </div>
       </header>
       <main>{children}</main>
@@ -61,7 +63,7 @@ function MobilePage({ children }) {
       <header>
         <div className={styles.headerContainer}>
           {/* <div className={styles.dropDown}>  */}
-            <Dropdown background={{type: "image", src: "/icon/burger.ico", alt: "burger", height: "35", width: "35"}} itemList={[{name: "asd"}, {name: "das"}]} disableArrow/>
+          <Dropdown background={{type: "image", src: "/icon/burger.ico", alt: "burger", height: "35", width: "35"}} itemList={[{name: "asd"}, {name: "das"}]} disableArrow/>
           {/* </div> */}
         </div>
       </header>
