@@ -1,8 +1,10 @@
 import Image from "next/image";
-// import Layout from "../components/Layout/Layout";
 import styles from "../styles/Home.module.css";
 import Carousel from "../components/Carousel/Carousel";
 import dynamic from "next/dynamic";
+
+
+// Disable SSR since we need access window object inside Layout component
 const NoSSR = dynamic(() => import("../components/Layout/Layout"), {
   ssr: false,
 });
@@ -36,7 +38,7 @@ export default function Home({ images }) {
   );
 }
 
-// //* ACCESS SERVER RESOURCE*//
+//---ACCESS SERVER RESOURCE---\\
 
 import fs from "fs";
 import path from "path";

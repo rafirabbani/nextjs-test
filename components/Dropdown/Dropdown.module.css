@@ -1,0 +1,11 @@
+.btn {
+    background-color: red;
+    margin: 5px;
+}
+
+.btn.show {
+    background-color: white;
+}
+
+
+

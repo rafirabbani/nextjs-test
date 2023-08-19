@@ -1,13 +1,13 @@
 import styles from "./Layout.module.css";
-import Dropdown from "react-bootstrap/Dropdown";
 import { useState, useEffect } from "react";
+import Dropdown from '../Dropdown/Dropdown';
 
 export default function Layout({ children }) {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
   });
-  
+
   useEffect(() => {
     function handleResize() {
       setWindowSize({
@@ -16,7 +16,10 @@ export default function Layout({ children }) {
       });
     }
     window.addEventListener("resize", handleResize);
-    return () => { window.removeEventListener('resize', handleResize)}
+    // handleResize();
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   });
 
   if (windowSize.width > 400) {
@@ -57,13 +60,9 @@ function MobilePage({ children }) {
     <div className={styles.layout}>
       <header>
         <div className={styles.headerContainer}>
-          <Dropdown>
-            <Dropdown.Toggle>Toggle</Dropdown.Toggle>
-            <Dropdown.Item>1</Dropdown.Item>
-            <Dropdown.Item>2</Dropdown.Item>
-            <Dropdown.Item>3</Dropdown.Item>
-          </Dropdown>
-          <div className={styles.rightHeader}>Burger Right</div>
+          {/* <div className={styles.dropDown}>  */}
+            <Dropdown background={{type: "image", src: "/icon/burger.ico", alt: "burger", height: "35", width: "35"}} itemList={[{name: "asd"}, {name: "das"}]} disableArrow/>
+          {/* </div> */}
         </div>
       </header>
       <main>{children}</main>

@@ -15,15 +15,11 @@
     column-gap: 2rem;
 }
 
-.dropdown-toggle::after {
-    display: none;
-}
-
-/* #dropdown-basic .dropdown-toggle::after {
-    display: none !important;
-} */
-
 .headerContainer .rightHeader {
     padding-right: 5rem;
     color: red;
+}
+
+.dropDown {
+    margin: 10px;
 }
