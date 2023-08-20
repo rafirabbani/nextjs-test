@@ -3,6 +3,7 @@ import Gallery from "../components/Gallery/Gallery"
 import dynamic from "next/dynamic";
 import Profile from "../components/Profile/Profile";
 import { useState, useEffect } from "react";
+// Import both to avoid eslint exhaustive dept useEffect dependency
 import Router, { useRouter } from 'next/router'
 
 
@@ -22,6 +23,7 @@ export default function Home({ images }) {
   };
 
   useEffect(() => {
+    // Using Router to avoid eslint exhaustive dept useEffect dependency
     if (selectedLang !== "eng" && selectedLang !== "jpn" && selectedLang !== "idn") {
       Router.push('/?lang=eng');
     }
