@@ -1,10 +1,13 @@
 import styles from "./Profile.module.css";
 import { useState, useEffect } from "react";
 export default function Profile({ ...props }) {
+
+  // TODO: create profile api call
     // const [profile, setProfile] = useState({});
 
     // useEffect(() => {
-    //   setProfile(props?.profile[props?.selectedLang]);
+      
+    //   setProfile({});
     // }, [props.profile, props.selectedLang]);
 
     const handleOnFocusLeft = () => {

@@ -3,6 +3,7 @@ import Gallery from "../components/Gallery/Gallery"
 import dynamic from "next/dynamic";
 import Profile from "../components/Profile/Profile";
 import { useState, useEffect } from "react";
+import Router, { useRouter } from 'next/router'
 
 
 // Disable SSR since we need access window object inside Layout component
@@ -11,12 +12,22 @@ const NoSSR = dynamic(() => import("../components/Layout/Layout"), {
 });
 
 export default function Home({ images }) {
-  const [selectedLang, setSelectedLang] = useState("eng");
+  const router = useRouter();
+  const queryLang = router.query?.lang;
+  const [selectedLang, setSelectedLang] = useState(queryLang === "eng" || queryLang === "idn" || queryLang === "jpn" ? queryLang : "eng");
+
+
   const handleChangeLang = (lang) => {
-    setSelectedLang(lang)
-  }
+    setSelectedLang(lang);
+  };
+
   useEffect(() => {
-    handleChangeLang(selectedLang);
+    if (selectedLang !== "eng" && selectedLang !== "jpn" && selectedLang !== "idn") {
+      Router.push('/?lang=eng');
+    }
+    else {
+      Router.push(`/?lang=${selectedLang}`)
+    }
   }, [selectedLang]);
   return (
     <>
