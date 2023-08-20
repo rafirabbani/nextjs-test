@@ -1,4 +1,4 @@
-import styles from "./Dropdown.module.css";
+// import styles from "./Dropdown.module.css";
 import Image from "next/image";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -7,13 +7,14 @@ import Select from "@mui/material/Select";
 import { useState, useRef, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 
-export default function DropDown({ itemList, background, disableArrow }) {
-  const [lang, setLang] = useState("ENG");
+export default function DropDown({ langList, background, disableArrow, selectedLang, handleChangeLang }) {
+  const [lang, setLang] = useState(selectedLang);
   const searchInput = useRef(null);
 
   const handleChange = (e) => {
     e.preventDefault();
     setLang(e.target.value);
+    handleChangeLang(e.target.value);
   };
 
   const handleClose = () => {
@@ -68,12 +69,13 @@ export default function DropDown({ itemList, background, disableArrow }) {
             ".MuiPaper-root": { backgroundColor: "black", color: "red"},
             ".MuiMenuItem-root": {paddingTop: "8px", paddingBottom: "8px",},
             "&& .Mui-selected": { backgroundColor: "red",  color: "white"},
+            "&& .Mui-selected:hover": { backgroundColor: "red",  color: "white"},
             "& .MuiMenuItem-root:hover": { backgroundColor: "white", color: "black"}
           },
         }}
       >
-        {itemList.map((item, index) => (
-          <MenuItem value={item.name} key={index}>
+        {langList.map((item, index) => (
+          <MenuItem value={item.value} key={index}>
             {item.name}
           </MenuItem>
         ))}
@@ -122,9 +124,3 @@ const StyledFormControl = styled(FormControl)(({ ...props }) => {
     },
   };
 });
-
-// const StyledSelect= styled(Select)(()=>({
-//   ".MuiPaper-root": {
-//     backgroundColor: "black",
-//   },
-// }))

@@ -2,12 +2,15 @@
 .imageContainer {
     width: 100vw;
     height: 70vh;
-    background-color: wheat;
+    background-color: #2e1516;
     position: relative;
+    
 }
 
 .imageContainer .image {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
 }

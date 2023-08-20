@@ -6,10 +6,9 @@ import "bootstrap/dist/css/bootstrap.css";
 import Image from "next/image";
 import styles from "./Carousel.module.css";
 
-export default function CarouselComponent({ images }) {
-  // console.log(images);
+export default function CarouselComponent({ images, ...props }) {
   return (
-    <Carousel>
+    <Carousel /* className={styles.} */>
       {images &&
         images.map((data, key) => {
           return (
@@ -22,6 +21,9 @@ export default function CarouselComponent({ images }) {
                   fill
                 />
               </div>
+              <Carousel.Caption>
+                <h5>{data?.detail[props?.selectedLang]?.name}</h5>
+              </Carousel.Caption>
             </Carousel.Item>
           );
         })}

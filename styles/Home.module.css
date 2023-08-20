@@ -1,6 +1,4 @@
-.carouselContainer {
-  padding: 0 1rem;
-}
+
 
 .profileContainer {
   display: flex;
@@ -10,20 +8,6 @@
 
 .gallery {
   padding: 0 1rem;
-}
-
-.imageContainer {
-  padding: 1rem;
-  width: 100vw;
-  height: 100vh;
-  position: relative;
-  background-color: grey;
-  margin-top: 0.5rem;
-}
-
-.imageContainer .image {
-  padding: 1rem;
-  object-fit: contain;
 }
 
 .container .profile {

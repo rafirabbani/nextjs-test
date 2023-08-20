@@ -1,7 +1,8 @@
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Carousel from "../components/Carousel/Carousel";
+import Gallery from "../components/Gallery/Gallery"
 import dynamic from "next/dynamic";
+import Profile from "../components/Profile/Profile";
+import { useState, useEffect } from "react";
 
 
 // Disable SSR since we need access window object inside Layout component
@@ -10,29 +11,22 @@ const NoSSR = dynamic(() => import("../components/Layout/Layout"), {
 });
 
 export default function Home({ images }) {
+  const [selectedLang, setSelectedLang] = useState("eng");
+  const handleChangeLang = (lang) => {
+    setSelectedLang(lang)
+  }
+  useEffect(() => {
+    handleChangeLang(selectedLang);
+  }, [selectedLang]);
   return (
     <>
-      <NoSSR>
+      <NoSSR selectedLang={selectedLang} handleChangeLang={handleChangeLang}>
         {/* Carousel */}
-        <Carousel images={images && images.slice(0, 6)} />
+        <Carousel images={images && images.slice(0, 6)}  selectedLang={selectedLang}/>
         {/* Profile */}
-        <div className={styles.profileContainer}>
-          <div>MIDDLE</div>
-        </div>
+        <Profile selectedLang={selectedLang}/>
         {/* Gallery */}
-        {images &&
-          images.map((data, index) => {
-            return (
-              <div key={index} className={styles.imageContainer}>
-                <Image
-                  src={`${data.filePath}`}
-                  alt={data.fileName}
-                  className={styles.image}
-                  fill
-                />
-              </div>
-            );
-          })}
+        <Gallery images={images} selectedLang={selectedLang}/>
       </NoSSR>
     </>
   );
@@ -56,6 +50,23 @@ async function listFiles() {
           return {
             fileName: f,
             filePath: `/carousel/${f}`,
+            detail: {
+              eng: {
+                name: "something in japanese",
+                character: "2B",
+                fandom: "NieR:Automata"
+              },
+              jpn: {
+                name: "日本語で何か",
+                character: "ヨルハ２号Ｂ型",
+                fandom: "ニーア オートマタ"
+              },
+              idn: {
+                name: "something in japanese",
+                character: "2B",
+                fandom: "NieR:Automata"
+              }
+            }
           };
         })
       );

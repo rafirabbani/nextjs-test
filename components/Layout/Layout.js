@@ -1,12 +1,14 @@
 import styles from "./Layout.module.css";
 import { useState, useEffect } from "react";
-import Dropdown from '../Dropdown/Dropdown';
+import Dropdown from "../Dropdown/Dropdown";
 
-export default function Layout({ children }) {
+export default function Layout({ children, ...props }) {
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
+
+  const handleChangeLang = props?.handleChangeLang;
 
   useEffect(() => {
     function handleResize() {
@@ -25,7 +27,7 @@ export default function Layout({ children }) {
   if (windowSize.width > 400) {
     return (
       <>
-        <WebPage>{children}</WebPage>
+        <WebPage selectedLang={props?.selectedLang} handleChangeLang={handleChangeLang}>{children}</WebPage>
       </>
     );
   } else
@@ -36,18 +38,34 @@ export default function Layout({ children }) {
     );
 }
 
-function WebPage({ children }) {
+function WebPage({ children, ...props }) {
+  // set default lang props passed to dropdown componenent
+  const selectedLang = props?.selectedLang
+  const handleChangeLang = props?.handleChangeLang
   return (
     <div className={styles.layout}>
       <header>
         <div className={styles.headerContainer}>
+          <div className={styles.logoContainer}>
+            {/* Logo goes Here */}
+          </div>
           <div className={styles.leftHeader}>
-            <a>Home</a>
-            <a>Gallery</a>
-            <a>Contacts</a>
+            <div className={styles.routesContainer}>
+              <a>Gallery</a>
+              <a>Contacts</a>
+            </div>
           </div>
           <div className={styles.rightHeader}>
-          <Dropdown background={{type: "string", name: "Language",}} itemList={[{name: "ENG"}, {name: "JPN"}, {name: "IDN"}]} /* disableArrow *//>
+            <Dropdown
+              background={{ type: "string", name: "Language" }}
+              langList={[
+                { name: "ENG", value: "eng" },
+                { name: "JPN", value: "jpn" },
+                { name: "IDN", value: "idn"},
+              ]}
+              selectedLang={selectedLang}
+              handleChangeLang={handleChangeLang}
+            />
           </div>
         </div>
       </header>
@@ -63,7 +81,17 @@ function MobilePage({ children }) {
       <header>
         <div className={styles.headerContainer}>
           {/* <div className={styles.dropDown}>  */}
-          <Dropdown background={{type: "image", src: "/icon/burger.ico", alt: "burger", height: "35", width: "35"}} itemList={[{name: "asd"}, {name: "das"}]} disableArrow/>
+          <Dropdown
+            background={{
+              type: "image",
+              src: "/icon/burger.ico",
+              alt: "burger",
+              height: "35",
+              width: "35",
+            }}
+            itemList={[{ name: "asd" }, { name: "das" }]}
+            disableArrow
+          />
           {/* </div> */}
         </div>
       </header>

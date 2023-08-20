@@ -1,0 +1,36 @@
+.imageContainer {
+    background-color: #2e1516;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+
+.imagePlaceholder {
+    padding: 1rem;
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.imagePlaceholder .image {
+    padding: 1rem;
+    object-fit: contain;
+}
+
+.imageContainer .imageGalleryInfoContainer {
+    display: flex;
+    justify-content: center;
+    /* margin-bottom: 0.5rem; */
+    width: 100vw;
+    
+    .imageGalleryInfo {
+        height: 10rem;
+        background-color: black;
+        width: 35rem;
+        padding: 1rem;
+        border-radius: 20px;
+        margin-bottom: 10px;
+    }
+    
+}
+
