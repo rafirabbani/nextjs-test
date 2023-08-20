@@ -75,10 +75,10 @@ async function listFiles() {
 }
 
 export async function getServerSideProps() {
-  const res = await listFiles();
+  const images = await listFiles();
   return {
     props: {
-      images: res,
+      images,
     },
   };
 }
