@@ -44,7 +44,16 @@
 .profileInfo .profileOtherPlatform {
     padding-right: 5rem;
     padding-left: 5rem;
-    /* padding-top: 2rem; */
     width: 100%;
     text-align: center;
+    margin-top: 2rem;
+}
+
+.profileInfoLeft .profileInfoLeft_2 {
+    margin-top: 3rem;
+}
+
+/* TODO: create entry animation */
+.animation_entry {
+    color: aqua
 }

@@ -15,6 +15,7 @@ const NoSSR = dynamic(() => import("../components/Layout/Layout"), {
 export default function Home({ images }) {
   const router = useRouter();
   const queryLang = router.query?.lang;
+  // Set default selectedLang state if queryLang sent is not valid
   const [selectedLang, setSelectedLang] = useState(queryLang === "eng" || queryLang === "idn" || queryLang === "jpn" ? queryLang : "eng");
 
 
