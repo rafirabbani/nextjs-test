@@ -7,7 +7,13 @@ import Select from "@mui/material/Select";
 import { useState, useRef, useEffect } from "react";
 import { styled } from "@mui/material/styles";
 
-export default function DropDown({ langList, background, disableArrow, selectedLang, handleChangeLang }) {
+export default function DropDown({
+  langList,
+  background,
+  disableArrow,
+  selectedLang,
+  handleChangeLang,
+}) {
   const [lang, setLang] = useState(selectedLang);
   const searchInput = useRef(null);
 
@@ -64,13 +70,20 @@ export default function DropDown({ langList, background, disableArrow, selectedL
         onChange={handleChange}
         onClose={handleClose}
         onOpen={handleOpen}
-        MenuProps={{
-          sx: {
-            ".MuiPaper-root": { backgroundColor: "black", color: "red"},
-            ".MuiMenuItem-root": {paddingTop: "8px", paddingBottom: "8px",},
-            "&& .Mui-selected": { backgroundColor: "red",  color: "white"},
-            "&& .Mui-selected:hover": { backgroundColor: "red",  color: "white"},
-            "& .MuiMenuItem-root:hover": { backgroundColor: "white", color: "black"}
+        inputProps={{
+          MenuProps: {
+            MenuListProps: {
+              sx: {
+                backgroundColor: "black",
+                color: "red",
+                paddingTop: "2px",
+                paddingBottom: "2px",
+                ".MuiButtonBase-root:hover": {
+                  backgroundColor: "red",
+                  color: "white",
+                },
+              },
+            },
           },
         }}
       >

@@ -23,8 +23,8 @@ async function listProfiles(lang) {
 export default async function handler(req, res) {
   try {
     const lang = req?.query?.lang;
-    const files = await listProfiles(lang);
-    return res.status(200).send({ files });
+    const profile = await listProfiles(lang);
+    return res.status(200).send({ profile });
   } catch (err) {
     console.log("error api call", err);
     return res.status(500).json({ error: err });

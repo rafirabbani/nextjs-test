@@ -1,19 +1,4 @@
-.darknessMyOldFriend {
-    &.MuiFormControl-root {
-        .MuiFormLabel-root {
-            color: "red";
-
-            &.Mui-focused {
-                color: "red";
-            }
-        }
-
-        .MuiSvgIcon-root {
-            color: "red";
-        }
-
-        .MuiInputBase-root {
-            color: "red";
-        }
-    }
+.helloDarkness:hover {
+    color: red;
+    background-color: white;
 }

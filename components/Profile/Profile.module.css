@@ -54,6 +54,20 @@
 }
 
 /* TODO: create entry animation */
-.animation_entry {
-    color: aqua
+.animationTrigger {
+    visibility: hidden;
+    animation: animateElement 0.5s 0.25s 1 forwards ease-in;
+    /* color: white */
+}
+
+@keyframes animateElement{
+    from{  
+        transform: translate(-50%, 0);
+        opacity: 0;
+        visibility: hidden; 
+    }
+    100%{
+        opacity: 1;
+        visibility: visible;
+    }
 }

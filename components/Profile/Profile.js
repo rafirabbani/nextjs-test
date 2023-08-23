@@ -1,26 +1,38 @@
 import styles from "./Profile.module.css";
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
+import useIsInViewport from "../Utils/ViewPortUtils";
+
 export default function Profile({ ...props }) {
+  const lang = props?.selectedLang;
   const ref1LeftProfile = useRef(null);
   const ref2LeftProfile = useRef(null);
 
-  const isVisible = useIsInViewport(ref1LeftProfile);
-  const isVisible2 = useIsInViewport(ref2LeftProfile);
-  // TODO: create profile api call
-    // const [profile, setProfile] = useState({});
+  const isVisible = useIsInViewport({ref: ref1LeftProfile, threshold: 0.3});
+  const isVisible2 = useIsInViewport({ref: ref2LeftProfile, threshold: 0.3});
+    const [profile, setProfile] = useState(null);
 
-    // useEffect(() => {
+    useEffect(() => {
+      fetch(`/api/profile?lang=${lang}`, {method: "GET"}).then((res) => {
+        return res.json();
+      }).then((res) => {
+        setProfile(res.profile);
+      })
       
-    //   setProfile({});
-    // }, [props.profile, props.selectedLang]);
+    }, [lang]);
 
   useEffect(() => {
     if (isVisible) {
-      console.log('left 1 visible');
+      ref1LeftProfile.current.classList.add(styles.animationTrigger);
+    }
+    else {
+      ref1LeftProfile.current.classList.remove(styles.animationTrigger);
     }
 
     if (isVisible2) {
-      console.log('left 2 visible')
+      ref2LeftProfile.current.classList.add(styles.animationTrigger);
+    }
+    else {
+      ref2LeftProfile.current.classList.remove(styles.animationTrigger);
     }
   },[isVisible, isVisible2]);  
 
@@ -31,14 +43,10 @@ export default function Profile({ ...props }) {
             {/* TODO: create entry animation when element inside viewport and exit animation when element outside */}
           <div className={styles.profileInfoLeft}>
             <div ref={ref1LeftProfile} className={styles.profileInfoLeft_1}>
-              For business inquiries, I accept work for games, light novels,
-              illustration books, exhibitions, album/EP art, music videos,
-              official merch/goods and promotional art.
+              {profile && profile[lang]?.commission}
             </div>
             <div ref={ref2LeftProfile} className={styles.profileInfoLeft_2}>
-              Please provide the following in your email Project Name,
-              Production Content, Schedule, and Budget I accept individual and
-              personal commission
+            {profile && profile[lang]?.inquiry}
             </div>
           </div>
           <div className={styles.profileInfoRight}>
@@ -54,26 +62,4 @@ export default function Profile({ ...props }) {
       </div>
     </div>
   );
-}
-
-function useIsInViewport(ref) {
-  const [isIntersecting, setIsIntersecting] = useState(false);
-
-  const observer = useMemo(
-    () =>
-      new IntersectionObserver(([entry]) =>
-        setIsIntersecting(entry.isIntersecting),
-      ),
-    [],
-  );
-
-  useEffect(() => {
-    observer.observe(ref.current);
-
-    return () => {
-      observer.disconnect();
-    };
-  }, [ref, observer]);
-
-  return isIntersecting;
 }
