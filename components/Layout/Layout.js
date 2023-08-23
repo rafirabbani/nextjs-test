@@ -44,15 +44,15 @@ function WebPage({ children, ...props }) {
   const handleChangeLang = props?.handleChangeLang
   return (
     <div className={styles.layout}>
-      <header>
+      <nav>
         <div className={styles.headerContainer}>
           <div className={styles.logoContainer}>
             {/* Logo goes Here */}
           </div>
           <div className={styles.leftHeader}>
             <div className={styles.routesContainer}>
-              <a>Gallery</a>
-              <a>Contacts</a>
+              <a href="#gallery-container">Gallery</a>
+              <a href="#contacts-container">Contacts</a>
             </div>
           </div>
           <div className={styles.rightHeader}>
@@ -68,7 +68,7 @@ function WebPage({ children, ...props }) {
             />
           </div>
         </div>
-      </header>
+      </nav>
       <main>{children}</main>
       <footer>Footer Here</footer>
     </div>

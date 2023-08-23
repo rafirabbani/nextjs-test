@@ -38,8 +38,32 @@
     /* padding-top: 2rem; */
     width: 50%;
     padding-left: 0.5rem;
+    text-align: center;
+    font-size: 1.75rem;
+    
+    .email{
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 4rem;
+    }
 
+    .twitter {
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 4rem;
+    }
+
+    .instagram {
+        font-size: 1.25rem;
+        display: flex;
+        justify-content: space-between;
+        margin-left: 4rem;
+    }
 }
+
+
 
 .profileInfo .profileOtherPlatform {
     padding-right: 5rem;

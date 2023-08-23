@@ -52,20 +52,18 @@ function ImageGalleryInfoContainer({ detailImage, image, lang, indexImage }) {
   const isVisible = useIsInViewport({ref: refGalleryInfo, threshold: 0.5});
 
   useEffect(() => {
-    const infoContainer = document.getElementById(`infoContainer_${indexImage}`);
     if (isVisible) {
-      infoContainer.classList.add(styles.animationTrigger);
-      // infoContainer.current.classList.add(styles.animationTrigger)
+      refGalleryInfo.current.classList.add(styles.animationTrigger);
     }
     else {
-      infoContainer.classList.remove(styles.animationTrigger);
+      refGalleryInfo.current.classList.remove(styles.animationTrigger);
     }
 
-  },[isVisible, indexImage]);  
+  },[isVisible]);  
 
   return (
     <div className={styles.imageGalleryInfoContainer}>
-      <div className={styles.imageGalleryInfo} id={`infoContainer_${indexImage}`} ref={refGalleryInfo}>  
+      <div className={styles.imageGalleryInfo} ref={refGalleryInfo}>  
         {detailImage.map((q, index) => {
           return (
             <h3 key={index}>
