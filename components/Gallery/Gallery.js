@@ -7,6 +7,7 @@ export default function Gallery({ images, ...props }) {
   const [imageList, setImageList] = useState([]);
   const [detailImageLang, setDetailImagelang] = useState([]);
   const selectedLang = props?.selectedLang;
+  const isMobile = props?.isMobile;
   const handleSetDetailImagelang = (selectedLang) => {
     if (selectedLang === "eng") {
       setDetailImagelang(["name", "character", "fandom"]);
@@ -37,7 +38,7 @@ export default function Gallery({ images, ...props }) {
                 fill
               />
             </div>
-              <ImageGalleryInfoContainer detailImage={detailImageLang} image={data} lang={selectedLang} indexImage={index}/>
+              <ImageGalleryInfoContainer detailImage={detailImageLang} image={data} lang={selectedLang} indexImage={index} isMobile={isMobile}/>
           </div>
         );
       })}
@@ -45,7 +46,7 @@ export default function Gallery({ images, ...props }) {
   );
 }
 
-function ImageGalleryInfoContainer({ detailImage, image, lang, indexImage }) {
+function ImageGalleryInfoContainer({ detailImage, image, lang, indexImage, isMobile }) {
 
   const refGalleryInfo = useRef(null);
 
@@ -58,12 +59,11 @@ function ImageGalleryInfoContainer({ detailImage, image, lang, indexImage }) {
     else {
       refGalleryInfo.current.classList.remove(styles.animationTrigger);
     }
-
   },[isVisible]);  
 
   return (
     <div className={styles.imageGalleryInfoContainer}>
-      <div className={styles.imageGalleryInfo} ref={refGalleryInfo}>  
+      <div className={`${styles.imageGalleryInfo} ${isMobile && styles.mobile}`} ref={refGalleryInfo}>  
         {detailImage.map((q, index) => {
           return (
             <h3 key={index}>

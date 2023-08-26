@@ -3,20 +3,23 @@
     justify-content: center;
     align-items: center;
     background-color: #b38f93;
-    width: 100vw;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
 
     .profileInfo {
-        height: 20rem;
         background-color: #5c494b;
-        width: 60rem;
         padding: 1.5rem;
+        width: 75%;
         border-radius: 0.5rem;
         margin-bottom: 10px;
         margin-top: 10px;
         color: #2b1d1f;
         font-weight: bold;
+
+        /* add mobile styling */
+        &.mobile {
+            width: 90%;
+        }
     }
 
     .profileDivider {
@@ -25,44 +28,42 @@
     }
 }
 
-.profileDivider .profileInfoLeft {
+.profileInfoLeft {
     padding-left: 3rem;
-    /* padding-top: 2rem; */
-    width: 50%;
+    padding-top: 0.5rem;
     padding-right: 0.5rem;
+    width: 50%;
+    &.mobile {
+        font-size: 10px;
+        padding: 0;
+    }
     
 }
 
-.profileDivider .profileInfoRight {
+.profileInfoRight {
     padding-right: 3rem;
-    /* padding-top: 2rem; */
-    width: 50%;
-    padding-left: 0.5rem;
+    padding-top: 1rem;
+    margin-left: 2rem;
     text-align: center;
     font-size: 1.75rem;
+
+    /* add mobile styling */
     
-    .email{
+    
+    .info{
         font-size: 1.25rem;
         display: flex;
         justify-content: space-between;
         margin-left: 4rem;
+        &.mobile {
+            font-size: 10px;
+            padding: 0;
+            margin: 0;
+            padding-right: 5px;
+        }
     }
 
-    .twitter {
-        font-size: 1.25rem;
-        display: flex;
-        justify-content: space-between;
-        margin-left: 4rem;
-    }
-
-    .instagram {
-        font-size: 1.25rem;
-        display: flex;
-        justify-content: space-between;
-        margin-left: 4rem;
-    }
 }
-
 
 
 .profileInfo .profileOtherPlatform {
@@ -71,6 +72,12 @@
     width: 100%;
     text-align: center;
     margin-top: 2rem;
+
+    &.mobile {
+        padding-right: 1.5rem;
+        padding-left: 1.5rem;
+        font-size: 20px;
+    }
 }
 
 .profileInfoLeft .profileInfoLeft_2 {
@@ -80,9 +87,14 @@
 /* TODO: create entry animation */
 .animationTrigger {
     visibility: hidden;
-    animation: animateElement 0.5s 0.25s 1 forwards ease-in;
-    /* color: white */
+    animation: animateElement 1s 0.5s 1 forwards ease-in;
+    
+    &.right {
+        /* animation: animateElementRight 0.5s 0.25s 1 forwards ease-in; */
+        animation: animateElementRight 1s 0.5s 1 forwards ease-in;
+    }
 }
+
 
 @keyframes animateElement{
     from{  
@@ -95,3 +107,17 @@
         visibility: visible;
     }
 }
+
+
+@keyframes animateElementRight{
+    from{  
+        transform: translate(100%, 0);
+        opacity: 0;
+        visibility: hidden; 
+    }
+    100%{
+        opacity: 1;
+        visibility: visible;
+    }
+}
+

@@ -17,7 +17,8 @@
 }
 
 .headerContainer .rightHeader {
-    padding-right: 5rem;
+    /* padding-right: 5rem; */
+    margin-right: 5rem;
     column-gap: 2rem;
     margin: 10px;
 }

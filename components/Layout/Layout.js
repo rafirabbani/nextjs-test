@@ -1,5 +1,11 @@
 import styles from "./Layout.module.css";
-import { useState, useEffect } from "react";
+import {
+  useState,
+  useEffect,
+  Children,
+  cloneElement as CloneElement,
+  isValidElement,
+} from "react";
 import Dropdown from "../Dropdown/Dropdown";
 
 export default function Layout({ children, ...props }) {
@@ -27,28 +33,39 @@ export default function Layout({ children, ...props }) {
   if (windowSize.width > 400) {
     return (
       <>
-        <WebPage selectedLang={props?.selectedLang} handleChangeLang={handleChangeLang}>{children}</WebPage>
+        <WebPage
+          selectedLang={props?.selectedLang}
+          handleChangeLang={handleChangeLang}
+        >
+          {children}
+        </WebPage>
       </>
     );
-  } else
+  } 
+  else {
     return (
       <>
-        <MobilePage>{children}</MobilePage>
+        <MobilePage
+          isMobile
+          selectedLang={props?.selectedLang}
+          handleChangeLang={handleChangeLang}
+        >
+          {children}
+        </MobilePage>
       </>
     );
+  }
 }
 
 function WebPage({ children, ...props }) {
   // set default lang props passed to dropdown componenent
-  const selectedLang = props?.selectedLang
-  const handleChangeLang = props?.handleChangeLang
+  const selectedLang = props?.selectedLang;
+  const handleChangeLang = props?.handleChangeLang;
   return (
     <div className={styles.layout}>
       <nav>
         <div className={styles.headerContainer}>
-          <div className={styles.logoContainer}>
-            {/* Logo goes Here */}
-          </div>
+          <div className={styles.logoContainer}>{/* Logo goes Here */}</div>
           <div className={styles.leftHeader}>
             <div className={styles.routesContainer}>
               <a href="#gallery-container">Gallery</a>
@@ -61,7 +78,7 @@ function WebPage({ children, ...props }) {
               langList={[
                 { name: "ENG", value: "eng" },
                 { name: "JPN", value: "jpn" },
-                { name: "IDN", value: "idn"},
+                { name: "IDN", value: "idn" },
               ]}
               selectedLang={selectedLang}
               handleChangeLang={handleChangeLang}
@@ -75,28 +92,42 @@ function WebPage({ children, ...props }) {
   );
 }
 
-function MobilePage({ children }) {
+function MobilePage({ children, ...props }) {
+  const selectedLang = props?.selectedLang;
+  const handleChangeLang = props?.handleChangeLang;
+
   return (
     <div className={styles.layout}>
       <header>
         <div className={styles.headerContainer}>
-          {/* <div className={styles.dropDown}>  */}
-          <Dropdown
-            background={{
-              type: "image",
-              src: "/icon/burger.ico",
-              alt: "burger",
-              height: "35",
-              width: "35",
-            }}
-            itemList={[{ name: "asd" }, { name: "das" }]}
-            disableArrow
-          />
-          {/* </div> */}
+          <div className={styles.logoContainer}>{/* Logo goes Here */}</div>
+          <div className={styles.dropDown}>
+            <Dropdown
+              background={{ type: "string", name: "Language" }}
+              langList={[
+                { name: "ENG", value: "eng" },
+                { name: "JPN", value: "jpn" },
+                { name: "IDN", value: "idn" },
+              ]}
+              selectedLang={selectedLang}
+              handleChangeLang={handleChangeLang}
+            />
+          </div>
         </div>
       </header>
-      <main>{children}</main>
+      <main>
+        {ChildrenPropsManipulate(children, {isMobile: "true"})}
+      </main>
       <footer>Footer Here</footer>
     </div>
   );
+}
+
+// child props manipulation
+function ChildrenPropsManipulate(childrenArray, addedProps) {
+  return Children.map(childrenArray, (child) => {
+    if (isValidElement(child)) {
+      return CloneElement(child, { ...addedProps });
+    }
+  });
 }

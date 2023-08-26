@@ -23,7 +23,7 @@
     /* margin-bottom: 0.5rem; */
     width: 100vw;
     visibility: hidden;
-    
+
     .imageGalleryInfo {
         height: 10rem;
         background-color: black;
@@ -31,8 +31,11 @@
         padding: 1rem;
         border-radius: 20px;
         margin-bottom: 10px;
+        &.mobile {
+            width: fit-content;
+        }
+
     }
-    
 }
 
 .animationTrigger {
@@ -40,15 +43,15 @@
     /* color: white */
 }
 
-@keyframes animateElement{
-    from{  
+@keyframes animateElement {
+    from {
         transform: translate(0, 50%);
         opacity: 0;
-        visibility: hidden; 
+        visibility: hidden;
     }
-    100%{
+
+    100% {
         opacity: 1;
         visibility: visible;
     }
 }
-

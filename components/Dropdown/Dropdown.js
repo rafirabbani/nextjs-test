@@ -113,7 +113,7 @@ function Background({ background }) {
 }
 
 const StyledFormControl = styled(FormControl)(({ ...props }) => {
-  const { disablearrow } = props;
+   const disablearrow = props?.disablearrow
   return {
     "&.MuiFormControl-root": {
       minWidth: "120px",
