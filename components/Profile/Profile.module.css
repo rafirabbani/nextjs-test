@@ -37,8 +37,6 @@
 .profileInfoRight {
     flex-basis: 0;
     flex-grow: 1;
-    /* text-align: center; */
-    /* max-width: 50%; */
     visibility: hidden;
     margin-left: calc(0.25rem + 2.5vw);
     margin-top: calc(0.5rem + 2.5vh);
@@ -76,8 +74,6 @@
         margin-top: calc(0.75rem + 1vh);
         margin-bottom: calc(0.75rem + 1vh);
     }
-
-
 }
 
 
