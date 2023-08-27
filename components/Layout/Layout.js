@@ -22,10 +22,6 @@ export default function Layout({ children, ...props }) {
         width: window.innerWidth,
         height: window.innerHeight,
       });
-
-      console.log(windowSize);
-
-      
     }
     window.addEventListener("resize", handleResize);
     // handleResize();
@@ -33,17 +29,6 @@ export default function Layout({ children, ...props }) {
       window.removeEventListener("resize", handleResize);
     };
   });
-
-  // return (
-  //   <>
-  //     <WebPage
-  //       selectedLang={props?.selectedLang}
-  //       handleChangeLang={handleChangeLang}
-  //     >
-  //       {children}
-  //     </WebPage>
-  //   </>
-  // );
 
   if (windowSize.width > 400) {
     return (

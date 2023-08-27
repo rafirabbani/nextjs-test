@@ -1,5 +1,5 @@
 import styles from "./Profile.module.css";
-import { use, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useIsInViewport from "../Utils/ViewPortUtils";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Image from "next/image";
@@ -49,31 +49,16 @@ function LeftProfile({...props}) {
    const ref1LeftProfile = useRef(null);
    const ref2LeftProfile = useRef(null);
  
-   // TODO: PROBLEM 2 FOR FUTURE RAFI MAMPUS
-   const isVisible = useIsInViewport({ ref: ref1LeftProfile, threshold: 0.3 });
-   const isVisible2 = useIsInViewport({ ref: ref2LeftProfile, threshold: 0.3 });
+   useIsInViewport({ ref: ref1LeftProfile, options: {threshold: 0.5}, styles: styles.animationTrigger});
+   useIsInViewport({ ref: ref2LeftProfile, options: {threshold: 0.5}, styles: styles.animationTrigger});
    
-  useEffect(() => {
-    if (isVisible) {
-      ref1LeftProfile.current.classList.add(styles.animationTrigger);
-    } 
-    else {
-      ref1LeftProfile.current.classList.remove(styles.animationTrigger);
-    }
-
-    if (isVisible2) {
-      ref2LeftProfile.current.classList.add(styles.animationTrigger);
-    } 
-    else {
-      ref2LeftProfile.current.classList.remove(styles.animationTrigger);
-    }
-  });
+  
   return (
     <div className={`${styles.profileInfoLeft} ${isMobile && styles.mobile}`}>
-      <div ref={ref1LeftProfile} className={styles.profileInfoLeft_1}>
+      <div className={styles.profileInfoLeft_1} ref={ref1LeftProfile}>
         {profile && profile[lang]?.commission}
       </div>
-      <div ref={ref2LeftProfile} className={styles.profileInfoLeft_2}>
+      <div className={styles.profileInfoLeft_2} ref={ref2LeftProfile}>
         {profile && profile[lang]?.inquiry}
       </div>
     </div>
@@ -83,26 +68,14 @@ function LeftProfile({...props}) {
 function RightProfile({ ...props }) {
   const isMobile = props?.isMobile;
   const refMobile2 = useRef(null);
-  const isVisible3 = useIsInViewport({ ref: refMobile2, threshold: 0.2 });
-
-  useEffect(() => {
-    if (isVisible3) {
-      refMobile2.current.classList.add(styles.animationTrigger, styles.right);
-    } 
-    else {
-      refMobile2.current.classList.remove(
-        styles.animationTrigger,
-        styles.right
-      );
-    }
-  });
+  
+  useIsInViewport({ ref: refMobile2, options: {threshold: 0.5}, styles: styles.animationTrigger });;
 
   return (
     <div
       className={`${styles.profileInfoRight} ${isMobile && styles.mobile}`}
       ref={refMobile2}
     >
-      Contact
       <table>
         <tbody>
           <tr>
@@ -111,8 +84,8 @@ function RightProfile({ ...props }) {
                 <MailOutlineIcon
                   sx={{
                     color: "black",
-                    fontSize: "2.2rem",
-                    fontWeight: "",
+                    fontSize: "calc(1.5rem + 0.5vw)",
+                    paddingRight: "0.2rem",
                   }}
                 />
               </div>
@@ -131,8 +104,8 @@ function RightProfile({ ...props }) {
                 <Image
                   src="/icon/twitter.svg"
                   alt="twitter"
-                  width={37}
-                  height={37}
+                  fill
+                  sizes="calc(1.5rem + 0.5vw)"
                 />
               </div>
             </td>
@@ -147,9 +120,9 @@ function RightProfile({ ...props }) {
               <div>
                 <Image
                   src="/icon/ig.svg"
-                  alt="twitter"
-                  width={37}
-                  height={37}
+                  alt="instagram"
+                  fill
+                  sizes="calc(1.5rem + 0.5vw)"
                 />
               </div>
             </td>
