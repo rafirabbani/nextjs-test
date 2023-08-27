@@ -21,6 +21,8 @@ export default function Home({ images }) {
       : "eng"
   );
 
+  const [isMobile, setIsMobile] = useState(false);
+
   const handleChangeLang = (lang) => {
     setSelectedLang(lang);
   };
@@ -39,7 +41,7 @@ export default function Home({ images }) {
   }, [selectedLang]);
   return (
     <>
-      <NoSSR selectedLang={selectedLang} handleChangeLang={handleChangeLang}>
+      <NoSSR selectedLang={selectedLang} handleChangeLang={handleChangeLang} handleIsMobile={setIsMobile}>
         {/* Carousel */}
         <div id={"carousel-container"}>
           <Carousel
@@ -49,7 +51,7 @@ export default function Home({ images }) {
         </div>
         {/* Profile */}
         <div id={"contacts-container"}>
-          <Profile selectedLang={selectedLang} />
+          <Profile selectedLang={selectedLang} isMobile={isMobile}/>
         </div>
         {/* Gallery */}
         <div id={"gallery-container"}>

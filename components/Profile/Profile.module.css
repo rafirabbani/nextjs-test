@@ -30,28 +30,53 @@
     flex-basis: 0;
     flex-grow: 1;
     /* visibility: hidden; */
+    margin-right: calc(0.25rem + 2.5vw);
 }
 
 
 .profileInfoRight {
     flex-basis: 0;
     flex-grow: 1;
-    text-align: center;
+    /* text-align: center; */
     /* max-width: 50%; */
     visibility: hidden;
-    margin-left: calc(1rem + 5vw);
+    margin-left: calc(0.25rem + 2.5vw);
+    margin-top: calc(0.5rem + 2.5vh);
 
-    .info {
+    .rightContainer {
         display: flex;
         justify-content: space-evenly;
+        align-items: baseline;
 
-        /* margin-left: 4rem; */
-        &.mobile {
-            padding: 0;
-            margin: 0;
-            padding-right: 5px;
+        .info {
+            flex-basis: 0;
+            flex-grow: 1;
+
         }
+
+        .iconContainer  {
+            flex-basis: 0;
+            flex-grow: 1;
+            max-width: calc(20% + 0.5vw);
+            /* position: relative;
+            overflow: hidden; */
+            overflow: hidden;
+
+            .icon {
+                width: 20%;
+                height: 20%;
+                /* object-fit: ; */
+            }
+        }
+
+        
+
     }
+    .rightContainer:nth-child(2) {
+        margin-top: calc(0.75rem + 1vh);
+        margin-bottom: calc(0.75rem + 1vh);
+    }
+
 
 }
 
@@ -62,11 +87,6 @@
     width: 100%;
     text-align: center;
     margin-top: 2rem;
-
-    &.mobile {
-        padding-right: 1.5rem;
-        padding-left: 1.5rem;
-    }
 }
 
 .profileInfoLeft .profileInfoLeft_1 {

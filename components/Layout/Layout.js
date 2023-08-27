@@ -9,6 +9,7 @@ import {
 import Dropdown from "../Dropdown/Dropdown";
 
 export default function Layout({ children, ...props }) {
+  const handleViewPort = props?.handleIsMobile;
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
@@ -30,12 +31,13 @@ export default function Layout({ children, ...props }) {
     };
   });
 
-  if (windowSize.width > 400) {
+  if (windowSize.width >= 768) {
     return (
       <>
         <WebPage
           selectedLang={props?.selectedLang}
           handleChangeLang={handleChangeLang}
+          handleViewPort={handleViewPort}
         >
           {children}
         </WebPage>
@@ -46,6 +48,7 @@ export default function Layout({ children, ...props }) {
     return (
       <>
         <MobilePage
+          handleViewPort={handleViewPort}
           selectedLang={props?.selectedLang}
           handleChangeLang={handleChangeLang}
         >
@@ -60,6 +63,12 @@ function WebPage({ children, ...props }) {
   // set default lang props passed to dropdown componenent
   const selectedLang = props?.selectedLang;
   const handleChangeLang = props?.handleChangeLang;
+  const handleViewPort = props?.handleViewPort;
+  
+  useEffect(() => {
+    handleViewPort(false);
+  });
+
   return (
     <div className={styles.layout}>
       <nav>
@@ -94,6 +103,11 @@ function WebPage({ children, ...props }) {
 function MobilePage({ children, ...props }) {
   const selectedLang = props?.selectedLang;
   const handleChangeLang = props?.handleChangeLang;
+  const handleViewPort = props?.handleViewPort;
+  
+  useEffect(() => {
+    handleViewPort(true);
+  });
 
   return (
     <div className={styles.layout}>
