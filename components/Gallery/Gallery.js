@@ -50,16 +50,7 @@ function ImageGalleryInfoContainer({ detailImage, image, lang, indexImage, isMob
 
   const refGalleryInfo = useRef(null);
 
-  const isVisible = useIsInViewport({ref: refGalleryInfo, threshold: 0.5});
-
-  useEffect(() => {
-    if (isVisible) {
-      refGalleryInfo.current.classList.add(styles.animationTrigger);
-    }
-    else {
-      refGalleryInfo.current.classList.remove(styles.animationTrigger);
-    }
-  },[isVisible]);  
+  useIsInViewport({ref: refGalleryInfo, options: {threshold: 0.5}, styles: styles.animationTrigger}); 
 
   return (
     <div className={styles.imageGalleryInfoContainer}>

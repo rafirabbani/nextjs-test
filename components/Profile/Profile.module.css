@@ -5,58 +5,48 @@
     background-color: #b38f93;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
+    font-size: calc(0.1rem + 1.5vw);
+    max-width: 100vw;
 
     .profileInfo {
         background-color: #5c494b;
-        padding: 1.5rem;
-        width: 75%;
+        padding: calc(1.75rem + 1vw);
         border-radius: 0.5rem;
-        margin-bottom: 10px;
-        margin-top: 10px;
         color: #2b1d1f;
         font-weight: bold;
+        width: calc(50% + 35vw);
 
-        /* add mobile styling */
-        &.mobile {
-            width: 90%;
-        }
     }
 
     .profileDivider {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
+
     }
 }
 
 .profileInfoLeft {
-    padding-left: 3rem;
-    padding-top: 0.5rem;
-    padding-right: 0.5rem;
-    width: 50%;
-    &.mobile {
-        font-size: 10px;
-        padding: 0;
-    }
-    
+    /* max-width: 50%; */
+    flex-basis: 0;
+    flex-grow: 1;
+    /* visibility: hidden; */
 }
 
-.profileInfoRight {
-    padding-right: 3rem;
-    padding-top: 1rem;
-    margin-left: 2rem;
-    text-align: center;
-    font-size: 1.75rem;
 
-    /* add mobile styling */
-    
-    
-    .info{
-        font-size: 1.25rem;
+.profileInfoRight {
+    flex-basis: 0;
+    flex-grow: 1;
+    text-align: center;
+    /* max-width: 50%; */
+    visibility: hidden;
+    margin-left: calc(1rem + 5vw);
+
+    .info {
         display: flex;
-        justify-content: space-between;
-        margin-left: 4rem;
+        justify-content: space-evenly;
+
+        /* margin-left: 4rem; */
         &.mobile {
-            font-size: 10px;
             padding: 0;
             margin: 0;
             padding-right: 5px;
@@ -76,48 +66,54 @@
     &.mobile {
         padding-right: 1.5rem;
         padding-left: 1.5rem;
-        font-size: 20px;
     }
+}
+
+.profileInfoLeft .profileInfoLeft_1 {
+    visibility: hidden;
 }
 
 .profileInfoLeft .profileInfoLeft_2 {
     margin-top: 3rem;
+    visibility: hidden;
 }
 
 /* TODO: create entry animation */
 .animationTrigger {
-    visibility: hidden;
+    /* visibility: hidden; */
     animation: animateElement 1s 0.5s 1 forwards ease-in;
-    
-    &.right {
-        /* animation: animateElementRight 0.5s 0.25s 1 forwards ease-in; */
-        animation: animateElementRight 1s 0.5s 1 forwards ease-in;
-    }
+
+}
+
+.animationTriggerRight {
+    visibility: hidden;
+    animation: animateElementRight 1s 0.5s 1 forwards ease-in;
 }
 
 
-@keyframes animateElement{
-    from{  
+@keyframes animateElement {
+    from {
         transform: translate(-50%, 0);
         opacity: 0;
-        visibility: hidden; 
+        visibility: hidden;
     }
-    100%{
+
+    100% {
         opacity: 1;
         visibility: visible;
     }
 }
 
 
-@keyframes animateElementRight{
-    from{  
+@keyframes animateElementRight {
+    from {
         transform: translate(100%, 0);
         opacity: 0;
-        visibility: hidden; 
+        visibility: hidden;
     }
-    100%{
+
+    100% {
         opacity: 1;
         visibility: visible;
     }
 }
-
