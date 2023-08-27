@@ -26,10 +26,10 @@
 }
 
 .profileInfoLeft {
-    /* max-width: 50%; */
+   
     flex-basis: 0;
     flex-grow: 1;
-    /* visibility: hidden; */
+    
     margin-right: calc(0.25rem + 2.5vw);
 }
 
@@ -56,14 +56,11 @@
             flex-basis: 0;
             flex-grow: 1;
             max-width: calc(20% + 0.5vw);
-            /* position: relative;
-            overflow: hidden; */
-            overflow: hidden;
 
             .icon {
                 width: 20%;
                 height: 20%;
-                /* object-fit: ; */
+                
             }
         }
 
@@ -78,11 +75,11 @@
 
 
 .profileInfo .profileOtherPlatform {
-    padding-right: 5rem;
-    padding-left: 5rem;
+    padding-right: calc(2.5rem + 0.5vw);
+    padding-left: calc(2.5rem + 0.5vw);
     width: 100%;
     text-align: center;
-    margin-top: 2rem;
+    margin-top: calc(1rem + 0.5vh);
 }
 
 .profileInfoLeft .profileInfoLeft_1 {
@@ -90,13 +87,12 @@
 }
 
 .profileInfoLeft .profileInfoLeft_2 {
-    margin-top: 3rem;
+    margin-top: calc(2.5rem + 0.5vw);
     visibility: hidden;
 }
 
-/* TODO: create entry animation */
+
 .animationTrigger {
-    /* visibility: hidden; */
     animation: animateElement 1s 0.5s 1 forwards ease-in;
 
 }

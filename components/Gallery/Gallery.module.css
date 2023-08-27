@@ -6,7 +6,6 @@
 
 
 .imagePlaceholder {
-    /* padding: 1rem; */
     width: 100vw;
     height: 100vh;
     position: relative;
@@ -15,10 +14,6 @@
 .imagePlaceholder .image {
     padding: 1rem;
     object-fit: contain;
-    /* width: 100%;
-    height: 50%; */
-    /* margin-top: 1rem;
-    margin-bottom: 1rem; */
 }
 
 .imageContainer .imageGalleryInfoContainer {
@@ -42,9 +37,7 @@
 }
 
 .animationTrigger {
-    /* visibility: hidden; */
     animation: animateElement 0.5s 0.25s 1 forwards ease-in;
-    /* color: white */
 }
 
 @keyframes animateElement {

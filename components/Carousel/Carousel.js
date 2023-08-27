@@ -8,7 +8,7 @@ import styles from "./Carousel.module.css";
 
 export default function CarouselComponent({ images, ...props }) {
   return (
-    <Carousel /* className={styles.} */>
+    <Carousel>
       {images &&
         images.map((data, key) => {
           return (
