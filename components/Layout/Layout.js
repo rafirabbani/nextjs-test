@@ -31,7 +31,7 @@ export default function Layout({ children, ...props }) {
     };
   });
 
-  if (windowSize.width >= 768) {
+  if (windowSize.width > 768) {
     return (
       <>
         <WebPage

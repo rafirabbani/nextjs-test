@@ -46,12 +46,6 @@
         justify-content: space-evenly;
         align-items: baseline;
 
-        .info {
-            flex-basis: 0;
-            flex-grow: 1;
-
-        }
-
         .iconContainer  {
             flex-basis: 0;
             flex-grow: 1;
@@ -64,7 +58,11 @@
             }
         }
 
-        
+        .info {
+            flex-basis: 0;
+            flex-grow: 1;
+
+        }        
 
     }
     .rightContainer:nth-child(2) {

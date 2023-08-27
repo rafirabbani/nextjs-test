@@ -106,7 +106,7 @@ function RightProfile({ ...props }) {
       </div>
       <div className={styles.rightContainer}>
         <div className={styles.iconContainer}>
-        <Image
+          <Image
             src="/icon/twitter.svg"
             alt="twitter"
             width={isMobile ? 20 : 65}
@@ -119,7 +119,7 @@ function RightProfile({ ...props }) {
       </div>
       <div className={styles.rightContainer}>
         <div className={styles.iconContainer}>
-        <Image
+          <Image
             src="/icon/ig.svg"
             alt="instagram"
             width={isMobile ? 20 : 65}
