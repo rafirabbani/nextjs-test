@@ -1,6 +1,3 @@
-// to do: create carousel component
-// import { Carousel } from 'react-responsive-carousel';
-// import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.css";
 import Image from "next/image";
@@ -12,7 +9,7 @@ export default function CarouselComponent({ images, ...props }) {
       {images &&
         images.map((data, key) => {
           return (
-            <Carousel.Item key={key}>
+            <Carousel.Item key={key} interval={2500}>
               <div className={styles.imageContainer}>
                 <Image
                   src={`${data.filePath}`}
