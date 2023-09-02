@@ -55,7 +55,7 @@ export default function Home({ images }) {
         </div>
         {/* Gallery */}
         <div id={"gallery-container"}>
-          <Gallery images={images} selectedLang={selectedLang} />
+          <Gallery images={images} selectedLang={selectedLang} isMobile={isMobile} />
         </div>
       </NoSSR>
     </>

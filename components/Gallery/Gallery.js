@@ -1,7 +1,7 @@
-import Image from "next/image";
 import styles from "./Gallery.module.css";
 import { useState, useEffect, useRef } from "react";
-import useIsInViewport from "../Utils/ViewPortUtils";
+import ImageGalleryInfoContainer from "./ImageGalleryInfo";
+import ImageGalleryContainer from "./ImageGallery";
 
 export default function Gallery({ images, ...props }) {
   const [imageList, setImageList] = useState([]);
@@ -16,6 +16,8 @@ export default function Gallery({ images, ...props }) {
     } else setDetailImagelang(["nama", "karakter", "fandom"]);
   };
 
+  const _useRef = useRef(null)
+
   useEffect(() => {
     setImageList([...images]);
     handleSetDetailImagelang(selectedLang);
@@ -29,43 +31,13 @@ export default function Gallery({ images, ...props }) {
             key={index}
             className={styles.imageContainer}
             style={index === 0 ? { marginTop: "0" } : null}
+            ref={_useRef}
           >
-            <div className={styles.imagePlaceholder}>
-              <Image
-                src={`${data.filePath}`}
-                alt={data.fileName}
-                className={styles.image}
-                fill
-              />
-            </div>
+              <ImageGalleryContainer imageData={data} isMobile={isMobile}/>
               <ImageGalleryInfoContainer detailImage={detailImageLang} image={data} lang={selectedLang} indexImage={index} isMobile={isMobile}/>
           </div>
         );
       })}
     </>
-  );
-}
-
-function ImageGalleryInfoContainer({ detailImage, image, lang, indexImage, isMobile }) {
-
-  const refGalleryInfo = useRef(null);
-
-  useIsInViewport({ref: refGalleryInfo, options: {threshold: 0.5}, styles: styles.animationTrigger}); 
-
-  return (
-    <div className={styles.imageGalleryInfoContainer}>
-      <div className={`${styles.imageGalleryInfo} ${isMobile && styles.mobile}`} ref={refGalleryInfo}>  
-        {detailImage.map((q, index) => {
-          return (
-            <h3 key={index}>
-              <span >{q}</span> <span style={{ marginLeft: "0.25rem" }}>:</span>
-              <span style={{ marginLeft: "1rem" }} >
-                {Object.values(image?.detail[lang])[index]}
-              </span>
-            </h3>
-          );
-        })}
-      </div>
-    </div>
   );
 }

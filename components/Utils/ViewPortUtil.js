@@ -1,29 +1,26 @@
-import { useState, useEffect, useMemo, isValidElement } from "react";
+import { useState, useEffect, useMemo } from "react";
 
-export default function useIsInViewport({ ref, options, styles }) {
-  // console.log('fire');
+export default function UseIsInViewport({ ref, options, styles}) {
   const [isIntersecting, setIsIntersecting] = useState(false);
-  // const root = options?.root;
-
+  const style = styles || null;
 
   const observer = useMemo(() => {
       return new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            // console.log('fire', entry);
             if (entry.isIntersecting) {
-              entry.target.classList.add(styles)
-              // setIsIntersecting(true)
+              entry.target.classList.add(style)
+              setIsIntersecting(true);
             }
             if (!entry.isIntersecting) {
-              entry.target.classList.remove(styles)
-              // setIsIntersecting(false)
+              entry.target.classList.remove(style)
+              setIsIntersecting(false);
             }
           })
         },
         { threshold: options?.threshold }
       )
-  }, [options, styles]);
+  }, [options, style]);
 
   useEffect(() => {
     observer.observe(ref.current);
@@ -33,4 +30,5 @@ export default function useIsInViewport({ ref, options, styles }) {
     };
   }, [ref, observer]);
 
+  return isIntersecting;
 }

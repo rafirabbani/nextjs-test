@@ -1,6 +1,6 @@
 import styles from "./Profile.module.css";
 import { useEffect, useRef, useState } from "react";
-import useIsInViewport from "../Utils/ViewPortUtils";
+import UseIsInViewport from "../Utils/ViewPortUtil";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import Image from "next/image";
 
@@ -51,12 +51,12 @@ function LeftProfile({ ...props }) {
   const ref1LeftProfile = useRef(null);
   const ref2LeftProfile = useRef(null);
 
-  useIsInViewport({
+  UseIsInViewport({
     ref: ref1LeftProfile,
     options: { threshold: 0.5 },
     styles: styles.animationTrigger,
   });
-  useIsInViewport({
+  UseIsInViewport({
     ref: ref2LeftProfile,
     options: { threshold: 0.5 },
     styles: styles.animationTrigger,
@@ -78,7 +78,7 @@ function RightProfile({ ...props }) {
   const isMobile = props?.isMobile;
   const refMobile2 = useRef(null);
 
-  useIsInViewport({
+  UseIsInViewport({
     ref: refMobile2,
     options: { threshold: 0.5 },
     styles: styles.animationTrigger,
