@@ -51,16 +51,6 @@ export default function DropDown({
             }
           },
         },
-      },
-      MuiSelect: {
-        styleOverrides: {
-          root: {
-            "MuibuttonBase:hover": {
-              color: "green",
-              backgroundColor: "white"
-            }
-          }
-        }
       }
     },
   });
