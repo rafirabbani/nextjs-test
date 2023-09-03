@@ -10,12 +10,25 @@ import Dropdown from "../Dropdown/Dropdown";
 
 export default function Layout({ children, ...props }) {
   const handleViewPort = props?.handleIsMobile;
+  const selectedLang = props?.selectedLang
   const [windowSize, setWindowSize] = useState({
     width: window.innerWidth,
     height: window.innerHeight,
   });
 
   const handleChangeLang = props?.handleChangeLang;
+
+  let backgroundName;
+  
+  if (selectedLang === "eng") {
+    backgroundName = "Languages"
+  }
+  else if (selectedLang === "jpn") {
+    backgroundName = "言語"
+  }
+  else {
+    backgroundName = "Bahasa"
+  }
 
   useEffect(() => {
     function handleResize() {
@@ -35,9 +48,10 @@ export default function Layout({ children, ...props }) {
     return (
       <>
         <WebPage
-          selectedLang={props?.selectedLang}
+          selectedLang={selectedLang}
           handleChangeLang={handleChangeLang}
           handleViewPort={handleViewPort}
+          backgroundName={backgroundName}
         >
           {children}
         </WebPage>
@@ -49,8 +63,9 @@ export default function Layout({ children, ...props }) {
       <>
         <MobilePage
           handleViewPort={handleViewPort}
-          selectedLang={props?.selectedLang}
+          selectedLang={selectedLang}
           handleChangeLang={handleChangeLang}
+          backgroundName={backgroundName}
         >
           {children}
         </MobilePage>
@@ -64,6 +79,7 @@ function WebPage({ children, ...props }) {
   const selectedLang = props?.selectedLang;
   const handleChangeLang = props?.handleChangeLang;
   const handleViewPort = props?.handleViewPort;
+  const backgroundName = props?.backgroundName
   
   useEffect(() => {
     handleViewPort(false);
@@ -73,7 +89,7 @@ function WebPage({ children, ...props }) {
     <div className={styles.layout}>
       <nav>
         <div className={styles.headerContainer}>
-          <div className={styles.logoContainer}>{/* Logo goes Here */}</div>
+          <div className={styles.logoContainer}>lOGO GOES HERE</div>
           <div className={styles.leftHeader}>
             <div className={styles.routesContainer}>
               <a href="#gallery-container">Gallery</a>
@@ -82,7 +98,7 @@ function WebPage({ children, ...props }) {
           </div>
           <div className={styles.rightHeader}>
             <Dropdown
-              background={{ type: "string", name: "Language" }}
+              background={{ type: "string", name: backgroundName }}
               langList={[
                 { name: "ENG", value: "eng" },
                 { name: "JPN", value: "jpn" },
@@ -104,19 +120,21 @@ function MobilePage({ children, ...props }) {
   const selectedLang = props?.selectedLang;
   const handleChangeLang = props?.handleChangeLang;
   const handleViewPort = props?.handleViewPort;
+  const backgroundName = props?.backgroundName
   
   useEffect(() => {
     handleViewPort(true);
   });
 
+
   return (
     <div className={styles.layout}>
       <header>
         <div className={styles.headerContainer}>
-          <div className={styles.logoContainer}>{/* Logo goes Here */}</div>
+          <div className={styles.logoContainer}>LOGO GOES HERE</div>
           <div className={styles.dropDown}>
             <Dropdown
-              background={{ type: "string", name: "Language" }}
+              background={{ type: "string", name: backgroundName }}
               langList={[
                 { name: "ENG", value: "eng" },
                 { name: "JPN", value: "jpn" },
@@ -125,6 +143,7 @@ function MobilePage({ children, ...props }) {
               selectedLang={selectedLang}
               handleChangeLang={handleChangeLang}
               disableArrow
+              isMobile={true}
             />
           </div>
         </div>

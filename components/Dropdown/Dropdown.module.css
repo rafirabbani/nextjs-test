@@ -1,4 +1,14 @@
-.helloDarkness:hover {
+.helloDarkness {
     color: red;
-    background-color: white;
+    text-align: center;
+    margin: 0;
+}
+
+
+.helloDarkness.isOpen {
+    visibility: hidden;
+}
+
+.helloDarkness.isClose {
+    visibility: visible;
 }

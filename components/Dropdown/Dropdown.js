@@ -5,7 +5,8 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useState, useRef, useEffect } from "react";
-import { styled } from "@mui/material/styles";
+import { styled, createTheme, ThemeProvider } from "@mui/material/styles";
+import styles from './Dropdown.module.css'
 
 export default function DropDown({
   langList,
@@ -13,17 +14,66 @@ export default function DropDown({
   disableArrow,
   selectedLang,
   handleChangeLang,
+  isMobile
 }) {
   const [lang, setLang] = useState(selectedLang);
+  const [isOpen, setIsOpen] = useState(false);
   const searchInput = useRef(null);
+
+  const theme = createTheme({
+    components: {
+      MuiPaper: {
+        styleOverrides: {
+          root: {
+            marginLeft: "5px",
+            backgroundColor: "black",
+          },
+        },
+      },
+      MuiMenuItem: {
+        styleOverrides: {
+          root : {
+            color: "red",
+            "&.Mui-selected": {
+              backgroundColor: "red",
+              color: "white",
+              "&.Mui-focusVisible": { backgroundColor: "red", color: "white"}
+            },
+            "&.MuiButtonBase-root" :{
+              "&.Mui-selected": {
+                backgroundColor: "red",
+                color: "white"
+              },
+              "&:hover": {
+                backgroundColor: "white",
+                color: "red"
+              }
+            }
+          },
+        },
+      },
+      MuiSelect: {
+        styleOverrides: {
+          root: {
+            "MuibuttonBase:hover": {
+              color: "green",
+              backgroundColor: "white"
+            }
+          }
+        }
+      }
+    },
+  });
 
   const handleChange = (e) => {
     e.preventDefault();
     setLang(e.target.value);
     handleChangeLang(e.target.value);
+    setIsOpen(false);
   };
 
   const handleClose = () => {
+    setIsOpen(false);
     searchInput.current.previousSibling.hidden = true;
     for (const child of Array.from(searchInput.current.children)) {
       const classList = Array.from(child?.classList);
@@ -37,6 +87,7 @@ export default function DropDown({
   };
 
   const handleOpen = () => {
+    setIsOpen(true);
     searchInput.current.previousSibling.hidden = false;
     for (const child of Array.from(searchInput.current.children)) {
       const classList = Array.from(child?.classList);
@@ -50,50 +101,54 @@ export default function DropDown({
   };
 
   useEffect(() => {
-    searchInput.current.previousSibling.hidden = true;
-  });
+    if (isOpen) {
+      searchInput.current.previousSibling.hidden = false;
+    }
+    else {
+      searchInput.current.previousSibling.hidden = true;
+    }
+    
+  }, [isOpen]);
 
   return (
-    <StyledFormControl
-      fullWidth
-      disablearrow={disableArrow ? "true" : undefined}
-    >
-      <InputLabel id="demo-simple-select-label">
-        <Background background={background} />
-      </InputLabel>
-      <Select
-        ref={searchInput}
-        labelId="demo-simple-select-label"
-        id="demo-simple-select"
-        value={lang}
-        label={background.type === "string" ? `${background.name}` : ""}
-        onChange={handleChange}
-        onClose={handleClose}
-        onOpen={handleOpen}
-        inputProps={{
-          MenuProps: {
-            MenuListProps: {
-              sx: {
-                backgroundColor: "black",
-                color: "red",
-                paddingTop: "2px",
-                paddingBottom: "2px",
-                ".MuiButtonBase-root:hover": {
-                  backgroundColor: "red",
-                  color: "white",
-                },
-              },
-            },
-          },
-        }}
+    <div>
+      <DropDownTitle
+        selectedLang={selectedLang}
+        isMobile={isMobile}
+        isOpen={isOpen}
+      />
+      <StyledFormControl
+        fullWidth
+        disablearrow={disableArrow ? "true" : undefined}
       >
-        {langList.map((item, index) => (
-          <MenuItem value={item.value} key={index}>
-            {item.name}
-          </MenuItem>
-        ))}
-      </Select>
-    </StyledFormControl>
+        <InputLabel id="demo-simple-select-label">
+          <Background background={background} />
+        </InputLabel>
+        <ThemeProvider theme={theme}>
+          <Select
+            ref={searchInput}
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={lang}
+            label={background.type === "string" ? `${background.name}` : ""}
+            onChange={handleChange}
+            onClose={handleClose}
+            onOpen={handleOpen}
+            open={isOpen}
+          >
+            {langList.map((item, index) => (
+              <MenuItem
+                value={item.value}
+                key={index}
+                
+              >
+                {item.name}
+              </MenuItem>
+            ))}
+          </Select>
+        </ThemeProvider>
+      </StyledFormControl>
+    </div>
   );
 }
 
@@ -110,6 +165,36 @@ function Background({ background }) {
   } else if (background.type === "string") {
     return `${background.name}`;
   }
+}
+
+function DropDownTitle({selectedLang, isMobile, isOpen}) {
+  
+  let title;
+
+  if (isMobile && selectedLang === "eng") {
+    title = "Language"
+  }
+  else if (isMobile && selectedLang === "jpn") {
+    title = "言語"
+  }
+  else if (isMobile && selectedLang === "idn") {
+    title = "Bahasa"
+  }
+  else {
+    if (selectedLang === "eng") {
+      title = "Select Language"
+    }
+    else if (selectedLang === "jpn") {
+      title = "言語を選択する"
+    }
+    else {
+      title = "Pilih Bahasa"
+    }
+  }
+
+  return (
+    <p className={`${styles.helloDarkness} ${isOpen ? styles.isOpen : styles.isClose}`}>{title}</p>
+  )
 }
 
 const StyledFormControl = styled(FormControl)(({ ...props }) => {
@@ -137,3 +222,6 @@ const StyledFormControl = styled(FormControl)(({ ...props }) => {
     },
   };
 });
+
+
+
