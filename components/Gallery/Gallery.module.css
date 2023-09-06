@@ -11,7 +11,7 @@
     position: relative;
 
     &.mobile {
-        height: 100vh
+        height: 90vh
     }
 }
 
@@ -28,12 +28,8 @@
 
     .imageGalleryInfo {
         background-color: black;
-        /* padding: 3rem;
-        padding-top: 2.5rem; */
         border-radius: 2rem;
         margin-bottom: 0.5rem;
-        /* height: 10rem;
-        width: 35rem; */
         padding-left: 7rem;
         padding-right: 7rem;
         padding-top: 2rem;
@@ -66,10 +62,10 @@
 }
 
 table.infoContainer{
-    font-size: 2.5rem;
+    font-size: 2rem;
 
     &.mobile {
-        font-size: 1rem;
+        font-size: 0.5rem;
     }
     
 }

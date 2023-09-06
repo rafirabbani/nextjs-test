@@ -34,7 +34,7 @@ function _ImageGalleryContainer({ ...props }) {
 
   return (
     <div
-      className={`${styles.imagePlaceholder} ${isMobile && styles.mobile}}`}
+      className={`${styles.imagePlaceholder} ${isMobile && styles.mobile}`}
       ref={_ref}
     >
       {isLoading ? ( showLoader &&

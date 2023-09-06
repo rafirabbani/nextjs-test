@@ -11,7 +11,7 @@ const NoSSR = dynamic(() => import("../components/Layout/Layout"), {
   ssr: false,
 });
 
-export default function Home({ images }) {
+export default function Home({ images, gallery }) {
   const router = useRouter();
   const queryLang = router.query?.lang;
   // Set default selectedLang state if queryLang sent is not valid
@@ -55,7 +55,7 @@ export default function Home({ images }) {
         </div>
         {/* Gallery */}
         <div id={"gallery-container"}>
-          <Gallery images={images} selectedLang={selectedLang} isMobile={isMobile} />
+          <Gallery images={gallery} selectedLang={selectedLang} isMobile={isMobile} />
         </div>
       </NoSSR>
     </>
@@ -67,7 +67,7 @@ export default function Home({ images }) {
 import fs from "fs";
 import path from "path";
 
-async function listFiles() {
+function listFilesCarousel() {
   const filePath = path.join(process.cwd(), "/public/carousel");
   return new Promise((resolve, reject) => {
     return fs.readdir(filePath, (err, files) => {
@@ -104,11 +104,52 @@ async function listFiles() {
   });
 }
 
+async function listFilesGallery() {
+  const filePath = path.join(process.cwd(), "/public/gallery");
+  return new Promise((resolve, reject) => {
+    return fs.readdir(filePath, (err, files) => {
+      if (err) {
+        console.log("err read file", err);
+        return reject(err);
+      }
+      return resolve(
+        files.map((f) => {
+          return {
+            fileName: f,
+            filePath: `/gallery/${f}`,
+            detail: {
+              eng: {
+                name: "something in japanese",
+                character: "2B",
+                fandom: "NieR:Automata",
+              },
+              jpn: {
+                name: "日本語で何か",
+                character: "ヨルハ２号Ｂ型",
+                fandom: "ニーア オートマタ",
+              },
+              idn: {
+                name: "something in japanese",
+                character: "2B",
+                fandom: "NieR:Automata",
+              },
+            },
+          };
+        })
+      );
+    });
+  });
+}
+
 export async function getServerSideProps() {
-  const images = await listFiles();
+  const promises = [listFilesCarousel(), listFilesGallery()]
+  const resultPromises = await Promise.all(promises);
+  const images = resultPromises[0];
+  const gallery = resultPromises[1]
   return {
     props: {
       images,
+      gallery
     },
   };
 }

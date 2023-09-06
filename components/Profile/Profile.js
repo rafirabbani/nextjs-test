@@ -101,7 +101,7 @@ function RightProfile({ ...props }) {
           />
         </div>
         <div className={`${styles.info} ${isMobile && styles.mobile}`}>
-          <a href="mailto:rafirabbani103@gmail.com">rafirabbani103@gmail.com</a>
+          <a href="mailto:rafirabbani103@gmail.com">{isMobile ? "Email" : "rafirabbani103@gmail.com"}</a>
         </div>
       </div>
       <div className={styles.rightContainer}>
