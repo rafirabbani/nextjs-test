@@ -11,8 +11,8 @@ export default function ImageGalleryInfoContainer({
 }) {
   const refGalleryInfo = useRef(null);
 
-   const isIntersecting = UseIsInViewport({ref: refGalleryInfo,options: { threshold: 0.5 }});
-   const isIntersecting2 = UseIsInViewport({ref: refGalleryInfo,options: { threshold: 0.1 }});
+   const isIntersecting = UseIsInViewport({ref: refGalleryInfo, options: { threshold: 0.5 }});
+   const isIntersecting2 = UseIsInViewport({ref: refGalleryInfo, options: { threshold: 0.1 }});
 
    useEffect(() => {
     if (isIntersecting) {
@@ -26,7 +26,7 @@ export default function ImageGalleryInfoContainer({
 
 
   return (
-    <div className={styles.imageGalleryInfoContainer}>
+    <div className={`${styles.imageGalleryInfoContainer} ${isMobile && styles.mobile}`}>
       <div
         className={`${styles.imageGalleryInfo} ${isMobile && styles.mobile}`}
         ref={refGalleryInfo}

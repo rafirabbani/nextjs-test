@@ -15,20 +15,21 @@ function _ImageGalleryContainer({ ...props }) {
   
   const imageData = props?.imageData;
   const isMobile = props?.isMobile
-  const [isLoading, setIsLoading] = useState(true);
+  // const [isLoading, setIsLoading] = useState(true);
   const _ref = useRef(null);
   const isIntersecting = UseIsInViewport({ ref: _ref, options: { threshold: [0.85] }});
   const isIntersecting2 = UseIsInViewport({ref: _ref, options: { threshold: [0.01] }});
 
-  const showLoader = UseDelayUnmount(isLoading, 500);
+  // const showLoader = UseDelayUnmount(isLoading, 100);
 
   useEffect(() => {
     if (isIntersecting) {
-      setIsLoading(false);
+      // setIsLoading(false);
+      _ref.current.classList.add(styles.animationTrigger)
     } 
     
     if (!isIntersecting2) {
-      setIsLoading(true);
+      _ref.current.classList.remove(styles.animationTrigger)
     }
   }, [isIntersecting, isIntersecting2]);
 
@@ -37,25 +38,14 @@ function _ImageGalleryContainer({ ...props }) {
       className={`${styles.imagePlaceholder} ${isMobile && styles.mobile}`}
       ref={_ref}
     >
-      {isLoading ? ( showLoader &&
-        <div>
-          <Image
-            src={"/loader/kafka_kuru2_no_bg.gif"}
-            alt="loader"
-            className={styles.image}
-            fill
-          />
-        </div>
-      ) : ( !showLoader &&
-        <div>
+      <div>
           <Image
             src={`${imageData.filePath}`}
             alt={imageData.fileName}
-            className={styles.image}
+            className={`${styles.image} ${isMobile && styles.mobile}`}
             fill
           />
         </div>
-      )}
     </div>
   );
 }

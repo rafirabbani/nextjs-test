@@ -99,7 +99,7 @@
 
 @keyframes animateElement {
     from {
-        transform: translate(-50%, 0);
+        transform: translate(-25%, 0);
         opacity: 0;
         visibility: hidden;
     }
@@ -113,7 +113,7 @@
 
 @keyframes animateElementRight {
     from {
-        transform: translate(100%, 0);
+        transform: translate(25%, 0);
         opacity: 0;
         visibility: hidden;
     }

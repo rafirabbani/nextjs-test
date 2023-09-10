@@ -81,7 +81,7 @@ function RightProfile({ ...props }) {
   UseIsInViewport({
     ref: refMobile2,
     options: { threshold: 0.5 },
-    styles: styles.animationTrigger,
+    styles: styles.animationTriggerRight,
   });
 
   return (

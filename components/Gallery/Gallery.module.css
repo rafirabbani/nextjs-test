@@ -6,34 +6,43 @@
 
 
 .imagePlaceholder {
-    width: 100vw;
+    width: 33vw;
     height: 75vh;
     position: relative;
+    visibility: hidden;
 
     &.mobile {
-        height: 90vh
+        width: 100vw;
     }
 }
 
 .imagePlaceholder .image {
     padding: 1rem;
     object-fit: contain;
+    
+    &.mobile {
+        padding: 0.25rem;
+    }
 }
 
 .imageGalleryInfoContainer {
     display: flex;
     justify-content: center;
-    width: 100vw;
+    width: 33vw;
     visibility: hidden;
+
+    &.mobile {
+        width: 100vw;
+    }
 
     .imageGalleryInfo {
         background-color: black;
-        border-radius: 2rem;
         margin-bottom: 0.5rem;
-        padding-left: 7rem;
-        padding-right: 7rem;
+        padding-right: 3rem;
+        padding-left: 3rem;
         padding-top: 2rem;
         padding-bottom: 2rem;
+        border-radius: 3rem;
         height: fit-content;
         width: fit-content;
         &.mobile {
@@ -50,7 +59,7 @@
 
 @keyframes animateElement {
     from {
-        transform: translate(0, 50%);
+        transform: translate(-10%, 0);
         opacity: 0;
         visibility: hidden;
     }
@@ -65,7 +74,7 @@ table.infoContainer{
     font-size: 2rem;
 
     &.mobile {
-        font-size: 0.5rem;
+        font-size: 1rem;
     }
     
 }
